@@ -1,0 +1,12 @@
+{
+  "editor.defaultFormatter": "rome.rome",
+  "editor.formatOnSave": true,
+  "rest-client.environmentVariables": {
+    "$shared": {
+      "jwt-token": ""
+    }
+  },
+  "cSpell.words": [
+    "Mantine"
+  ]
+}
