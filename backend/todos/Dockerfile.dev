@@ -1,0 +1,11 @@
+## Sets base image for our new image
+FROM node:16.14.2-alpine
+
+WORKDIR /usr/src/app
+COPY package*.json ./
+COPY tsconfig*.json ./
+
+# installs arent backed into the image
+CMD npm config set cache-min 9999999 && \
+    npm install && \
+    npm run start:dev
