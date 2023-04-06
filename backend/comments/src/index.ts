@@ -1,51 +1,32 @@
-import Surreal from "surrealdb.js";
+import express from "express";
+import { randomBytes } from "crypto";
 
-const db = new Surreal("http://127.0.0.1:8000/rpc");
+const app = express();
+app.use(express.json());
 
-async function main() {
-	try {
-		// Signin as a namespace, database, or root user
-		await db.signin({
-			user: "root",
-			pass: "root",
-		});
-
-		// Select a specific namespace / database
-		await db.use("test", "test");
-
-		// Create a new person with a random id
-		const created = await db.create("person", {
-			title: "Founder & CEO",
-			name: {
-				first: "Tobie",
-				last: "Morgan Hitchcock",
-			},
-			marketing: true,
-			identifier: Math.random().toString(36).substr(2, 10),
-		});
-
-		// Update a person record with a specific id
-		// const updated = await db.change("person:jaime", {
-		// 	marketing: true,
-		// });
-		// 		console.log("UPDATED: ", updated);
-
-		// Select all people records
-		const people = await db.select("person");
-
-		// Perform a custom advanced query
-		const groups = await db.query(
-			"SELECT marketing, count() FROM type::table($tb) GROUP BY marketing",
-			{
-				tb: "person",
-			},
-		);
-		console.log("CREATED: ", created);
-		console.log("PEOPLE: ", people);
-		console.log("GROUPS: ", groups);
-	} catch (e) {
-		console.error("ERROR", e);
-	}
+interface Comment {
+	id: string;
+	content: string;
 }
 
-main();
+const commentsByPostId = new Map<string, Comment[]>([]);
+
+app.get("/posts/:id/comments", (req, res) => {
+	res.status(200).send(commentsByPostId.get(req.params.id) ?? []);
+});
+
+app.post("/posts/:id/comments", (req, res) => {
+	const id = randomBytes(4).toString("hex");
+	const { content }: { content: string } = req.body;
+	if (typeof content !== "string") {
+		throw new Error("content is not string");
+	}
+	const comments = commentsByPostId.get(req.params.id) ?? [];
+	comments.push({ id, content });
+	commentsByPostId.set(req.params.id, comments);
+	res.status(201).send(comments);
+});
+
+app.listen(4445, () => {
+	console.log("running on port 4445");
+});
