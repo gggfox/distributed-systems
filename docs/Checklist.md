@@ -1,31 +1,57 @@
-# Frontend
+# Checklist
+
+## Frontend
+
 -[ ] Use Blur-hash for gradient images
--[ ] Use a component UI library (Mantine)
 -[ ] Make it accessible
 -[ ] semantic html
 -[ ] color contrast
 -[ ] image compression
 -[ ] use a folder routing structure
 
-# Backend
--[ ] Use docker live reload
--[ ]  
+### React
 
-# IDE
+-[ ] useRef hook in forms, don't use useState if you don't need to rerender every time a value changes
+-[ ] use the useMemo hook when calculating arrays;
+-[ ] use the useCallback for passing in functions to components
+-[ ] Use a component UI library (Mantine)
+-[ ] use a state management library
+
+## Backend
+
+-[ ] Use docker live reload
+-[ ] use ACID compliant database
+-[ ] every endpoint connected to the FE must send back a http status code and body
+
+### Express NPM
+-[ ] use `multer` for multi part form data aka file uploads
+-[ ] use `morgan` as a logging middleware logging
+-[ ] use `cors` for accepting requests 
+-[ ] use `dotenv` for using .env files
+
+
+## IDE
+
 -[ ] Use a linter and formatter
 
-# Microservices
+## Microservices
+
 -[ ] one database per service
 -[ ] saga pattern
 -[ ] use a messaging queue for async communication between services
 
-# Monolith
+## Monolith
+
 -[ ] use a per service folder structure
 -[ ] use a SQL database
 
-# Devops
+## Devops
+
 -[ ] use version control (git)
 -[ ] have a ci/cd pipeline (github actions)
 -[ ] use Infrastructure as Code
 
-# Cloud
+## Cloud
+
+## Git
+-[ ] have a .gitignore file
