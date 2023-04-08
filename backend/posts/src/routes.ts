@@ -1,9 +1,9 @@
-import express from "express";
+import express, { application } from "express";
 const router = express.Router();
 import { Request, Response } from "express";
 import { body, validationResult } from 'express-validator';
 import { v4 as uuidv4 } from 'uuid';
-
+import axios from "axios";
 interface Post {
   id: string
 	title: string;
@@ -31,12 +31,16 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
     const id = uuidv4();
-    const todo:Post = {
+    const post:Post = {
       id: id,
       title: req.body.title,
     }
-    posts.set(id, todo)
-    res.status(201).send(todo);
+    posts.set(id, post)
+    axios.post(process.env.EVENT_BUS_URL ?? "", {
+      type: 'PostCreated',
+      data: post
+    })
+    res.status(201).send(post);
   }
 );
 
@@ -49,5 +53,10 @@ router.delete("/posts/:id", function(req: Request, res: Response) {
   posts.delete(req.params.id);
   res.status(200).send();
 })
+
+router.post('/events', function(req: Request, res: Response) {
+  console.log('Recived Event ', req.body.type);
+  res.send({})
+});
 
 export default router;
