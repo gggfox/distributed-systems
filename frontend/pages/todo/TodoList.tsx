@@ -1,6 +1,5 @@
 import { Button, Checkbox, Group, Stack, Text } from "@mantine/core";
 import { useDeleteTodoMutation, useGetTodosQuery, useUpdateTodoMutation } from "../../store/todo.api.slice";
-import { useState } from "react";
 
 export default function TodoList() {
   const todoList = useGetTodosQuery();
@@ -27,10 +26,9 @@ export default function TodoList() {
         <Group key={todo.id} position="apart">
           <Checkbox checked={todo.done} onChange={() => updateTodo({...todo, done: !todo.done})}/>
           <Text>{todo.title}</Text>
-          <Button onClick={() => {
-            console.log('delete todo')
+          <Button onClick={() =>
             deleteTodo({id: todo.id})}
-            }>delete</Button>
+            >delete</Button>
         </Group>
       )
     })}

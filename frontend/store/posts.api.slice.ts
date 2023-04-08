@@ -9,18 +9,18 @@ export const postApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
     getAllPosts: builder.query<Post[],void>({
       query: () => ({
-        url: 'http://localhost:3201/posts',
+        url: `http://localhost:${process.env.NEXT_PUBLIC_POSTS_PORT}/posts`,
         method: 'GET',
       }),
       providesTags: ['Posts'],
     }),
     createPost: builder.mutation({
       query: (post: Post) => ({
-        url: 'http://localhost:3201/posts',
+        url: `http://localhost:${process.env.NEXT_PUBLIC_POSTS_PORT}/posts`,
         method: 'POST',
         body: post
       }),
-      invalidatesTags:['Todos'] //updates cache
+      invalidatesTags:['Posts'] //updates cache
     })
   }),
 
