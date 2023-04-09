@@ -1,13 +1,11 @@
-import express, { application } from "express";
+import express from "express";
 const router = express.Router();
 import { Request, Response } from "express";
-import { body, validationResult } from 'express-validator';
-import { v4 as uuidv4 } from 'uuid';
-import axios from "axios";
 
 interface Comment {
   id: string;
   content: string
+  status: string
 }
 
 interface Post {
@@ -36,14 +34,31 @@ router.post('/events', function(req: Request, res: Response) {
     posts.set(id, post)
   }
   if (type === "CommentCreated") {
-    const {id, content , postId} = data;
+    const {id, content , postId, status} = data;
     if (!posts.has(postId)) {
       throw new Error("trying to add comment to non existing post")
     }
     const post:Post = posts.get(postId)!;
-    const comment: Comment = {id, content}
+    const comment: Comment = {id, content, status}
     post?.comments.push(comment)
     posts.set(postId, post)
+  }
+
+  if (type === "CommentUpdated") {
+    const { id, content, postId, status} = data
+    if (!posts.has(postId)) {
+      throw new Error("trying to retrive a non existing post")
+    }
+    const post = posts.get(postId);
+    const comments = post?.comments.map((comment) => {
+      if (comment.id === id) {
+        comment.status = status;
+        comment.content = content;
+      }
+      return comment;
+    });
+    post!.comments = comments ?? [];
+    posts.set(postId, post!)
   }
   console.log(posts)
   res.send({})
