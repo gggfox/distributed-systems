@@ -9,19 +9,21 @@
 -[ ] image compression
 -[ ] use a folder routing structure
 
-### React
+### Next.js
 
 -[ ] useRef hook in forms, don't use useState if you don't need to rerender every time a value changes
 -[ ] use the useMemo hook when calculating arrays;
 -[ ] use the useCallback for passing in functions to components
 -[ ] Use a component UI library (Mantine)
 -[ ] use a state management library
-
+-[ ] use SSR for better SEO
 ## Backend
 
 -[ ] Use docker live reload
 -[ ] use ACID compliant database
 -[ ] every endpoint connected to the FE must send back a http status code and body
+-[ ] password encription
+-
 
 ### Express NPM
 -[ ] use `multer` for multi part form data aka file uploads
@@ -55,3 +57,13 @@
 
 ## Git
 -[ ] have a .gitignore file
+
+## High level
+-[ ] analytics
+-[ ] DB scalability
+-[ ] CI/CD
+-[ ] security
+-[ ] performance
+-[ ] wireframe, figma, prototype
+-[ ] disaster recovery plan
+-[ ] SEO
