@@ -17,8 +17,6 @@ router.get("/posts/:id", function (req: Request, res: Response) {
 
 router.get("/posts", function (req: Request, res: Response) {
   const allposts: Post[] = Array.from(posts.values())
-    console.log('posts', allposts)
-
   res.status(200).send(allposts)
 });
 

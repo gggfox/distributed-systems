@@ -5,9 +5,9 @@ const router = express.Router()
 import { Request, Response } from "express";
 
 interface Comment {
-	id: string;
+	id?: string;
   postId: string;
-	title: string;
+	content: string;
 }
 
 const commentsByPostId = new Map<string, Comment[]>([]);
@@ -19,16 +19,16 @@ router.get("/posts/:id/comments", function (req: Request, res: Response) {
 router.post("/posts/:id/comments", function (req: Request, res: Response) {
 	const id = uuidv4();
   const postId = req.params.id
-	const { title }: { title: string } = req.body;
-	if (typeof title !== "string") {
-    console.log(typeof title, title)
+	const { content }: { content: string } = req.body;
+	if (typeof content !== "string") {
+    console.log(typeof content, content)
 		throw new Error("content is not string");
 	}
 	const comments = commentsByPostId.get(postId) ?? [];
   const comment: Comment = {
     id: id,
     postId: postId,
-    title: title
+    content: content
   }
 	comments.push(comment);
 	commentsByPostId.set(postId, comments);

@@ -19,11 +19,13 @@ interface Post {
 const posts = new Map<string, Post>();
 
 router.get("/posts/:id", function (req: Request, res: Response) {
-  const post = posts
-  res.status(200).send(post)
+  const post = posts.get(req.params.id);
+  res.status(200).send(post);
 });
 
 router.get("/posts", function (req: Request, res: Response) {
+  const allposts: Post[] = Array.from(posts.values())
+  res.status(200).send(allposts)
 });
 
 router.post('/events', function(req: Request, res: Response) {
