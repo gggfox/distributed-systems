@@ -1,15 +1,11 @@
+import Post from "../types/post";
 import { apiSlice } from "./api.slice";
-
-interface Post {
-  id?: string;
-  title: string;
-}
 
 export const postApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
     getAllPosts: builder.query<Post[],void>({
       query: () => ({
-        url: `http://localhost:${process.env.NEXT_PUBLIC_POSTS_PORT}/posts`,
+        url: `http://localhost:${process.env.NEXT_PUBLIC_POSTS_QUERY_PORT}/posts`,
         method: 'GET',
       }),
       providesTags: ['Posts'],

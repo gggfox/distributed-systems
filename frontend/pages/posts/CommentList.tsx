@@ -25,7 +25,7 @@ export default function CommentList({postId}:Props){
   return (
   <Stack>
     {data?.map((comment) => {
-      return(<Box key={comment.id}>{comment.title}</Box>)
+      return(<Box key={comment.id}>{comment.content}</Box>)
           })
     }
   </Stack>)

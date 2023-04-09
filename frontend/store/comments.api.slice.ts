@@ -1,9 +1,5 @@
 import { apiSlice } from "./api.slice";
-
-export interface Comment {
-  id?: string;
-  title: string;
-}
+import Comment from "../types/comment"
 
 export const commentApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
@@ -17,7 +13,7 @@ export const commentApiSlice = apiSlice.injectEndpoints({
         method: 'POST',
         body: comment
       }),
-      invalidatesTags:['Comments'] //updates cache
+      invalidatesTags:['Posts'] //updates cache
     })
   }),
 
