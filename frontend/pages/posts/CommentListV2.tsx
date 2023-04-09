@@ -9,7 +9,13 @@ export default function CommentListV2({comments}:Props){
   return (
   <Stack>
     {comments?.map((comment) => {
-      return(<Box key={comment.id}>{comment.content}</Box>)
+      return(
+        <Box key={comment.id}>
+          {comment.status === 'approved' && comment.content}
+          {comment.status === 'rejected' && "Rejected"}
+          {comment.status === 'pending'  && "Awaiting moderation"}
+        </Box>
+      )
           })
     }
   </Stack>)
