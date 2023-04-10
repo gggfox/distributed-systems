@@ -6,7 +6,6 @@
   "prettier.arrowParens": "always",
   "prettier.printWidth": 80,
   "vscode-kubernetes.log-viewer.timestamp": false,
-  "editor.lineNumbers": "relative",
   "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
   "rest-client.environmentVariables": {
     "$shared": {
