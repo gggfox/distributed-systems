@@ -1,7 +1,7 @@
 import { Box, TextInput, Group, Button } from "@mantine/core";
 import { useForm, hasLength } from "@mantine/form";
 import PostList from "./PostList";
-import { useCreatePostMutation } from "../../store/posts.api.slice";
+import { useCreatePostMutation } from "../../store/api/posts.api.slice";
 import Post from "../../types/post";
 
 export default function PostPage() {

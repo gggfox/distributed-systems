@@ -1,6 +1,6 @@
 import { Button, Group, TextInput } from "@mantine/core";
 import { useRef } from "react";
-import { useCreateCommentMutation } from "../../store/comments.api.slice";
+import { useCreateCommentMutation } from "../../store/api/comments.api.slice";
 
 interface Props {
   postId?: string;
