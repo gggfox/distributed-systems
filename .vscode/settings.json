@@ -7,6 +7,13 @@
   "prettier.printWidth": 80,
   "vscode-kubernetes.log-viewer.timestamp": false,
   "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
+  "[markdown]": {
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": false,
+    "editor.formatOnSave": false
+  },
   "rest-client.environmentVariables": {
     "$shared": {
       "jwt-token": ""

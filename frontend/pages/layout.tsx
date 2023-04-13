@@ -2,12 +2,15 @@ import {
   ActionIcon,
   AppShell,
   Aside,
+  Avatar,
   Group,
   Header,
   Navbar,
   Stack,
+  Text,
+  TextInput,
 } from "@mantine/core";
-import { IconEye, IconEyeClosed } from "@tabler/icons-react";
+import { IconEye, IconEyeClosed, IconRocket } from "@tabler/icons-react";
 import Link from "next/link";
 import { ReactNode, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../store";
@@ -45,8 +48,22 @@ export default function Layout(props: { children: ReactNode }) {
         </Navbar>
       }
       header={
-        <Header height={60} p="xs">
-          {/* Header content */}
+        <Header height={80} p="xs">
+          <Group position="apart">
+            <Stack>
+              <Text>Good Morning!</Text>
+              <Text>Welcome Back Robin!</Text>
+            </Stack>
+            <Group>
+              <TextInput />
+              <ActionIcon>
+                <IconRocket size="1.125rem" />
+              </ActionIcon>
+              <Avatar color="cyan" radius="xl">
+                RR
+              </Avatar>
+            </Group>
+          </Group>
         </Header>
       }
       aside={aside}
