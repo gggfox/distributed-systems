@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-bus.deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: event-bus # find all pods with this label
+
+  template: # configuration for the pod
+    metadata:
+      labels:
+        app: event-bus
+
+    spec:
+      containers:
+        - name: event-bus
+          image: gggfox/event-bus:latest
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 4005
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-bus.service
+spec:
+  type: ClusterIP
+  selector:
+    app: event-bus
+  ports:
+    - name: event-bus
+      protocol: TCP
+      port: 4005 # Node port service port
+      targetPort: 4005 # actual container port

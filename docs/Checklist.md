@@ -8,10 +8,11 @@
 -[ ] color contrast
 -[ ] image compression
 -[ ] use a folder routing structure
-
-### Next.js
+### Next.js && React
 
 -[ ] useRef hook in forms, don't use useState if you don't need to rerender every time a value changes
+-[ ] use function version of useState
+-[ ] useMemo hook to prevent referential equality mistakes
 -[ ] use the useMemo hook when calculating arrays;
 -[ ] use the useCallback for passing in functions to components
 -[ ] Use a component UI library (Mantine)
@@ -67,3 +68,7 @@
 -[ ] wireframe, figma, prototype
 -[ ] disaster recovery plan
 -[ ] SEO
+
+## Github
+-[ ] define code owners
+-[ ] define a PR template

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: posts-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: posts # find all pods with this label
+
+  template: # configuration for the pod
+    metadata:
+      labels:
+        app: posts
+
+    spec:
+      containers:
+        - name: posts
+          image: gggfox/posts:latest
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 4000

@@ -1,10 +1,12 @@
-FROM node:16.14.2-alpine
+FROM node:alpine
 
-WORKDIR /usr/src/app
+WORKDIR /usr/ecommerce
 COPY package*.json ./
 
-RUN npm install --only=production
-COPY ./src ./src
-COPY ./.env ./.env
+RUN npm install
 
-CMD npm start
+COPY . .
+
+RUN npm run build
+
+CMD npm run start:prod

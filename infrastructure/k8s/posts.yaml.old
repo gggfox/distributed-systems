@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: posts # pod name
+  labels:
+    name: posts
+spec:
+  containers:
+    - name: posts # container name
+      image: posts:0.0.1 # docker image tag, a version is needed for k8s to not call docker hub
+      imagePullPolicy: Never
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
