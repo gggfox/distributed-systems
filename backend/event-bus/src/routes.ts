@@ -1,5 +1,5 @@
 import axios from "axios";
-import express, { application } from "express";
+import express from "express";
 const router = express.Router();
 import { Request, Response } from "express";
 
@@ -14,22 +14,22 @@ router.post("/events", function (req: Request, res: Response) {
   const event: Event = req.body;
   events.push(event);
   console.log("EVENT: ", event);
-  axios.post("http://localhost:4000/events", event).catch((err) => {
+  axios.post(process.env.POSTS_SERVICE_URL!, event).catch((err) => {
     console.log(err.message);
   });
-  axios.post("http://localhost:4001/events", event).catch((err) => {
+  axios.post(process.env.COMMENT_SERVICE_URL!, event).catch((err) => {
     console.log(err.message);
   });
-  axios.post("http://localhost:4002/events", event).catch((err) => {
+  axios.post(process.env.QUERY_SERVICE_URL!, event).catch((err) => {
     console.log(err.message);
   });
-  axios.post("http://localhost:4003/events", event).catch((err) => {
+  axios.post(process.env.MODERATION_SERVICE_URL!, event).catch((err) => {
     console.log(err.message);
   });
   res.send({ status: "OK" });
 });
 
-application.get("/events", function (req: Request, res: Response) {
+router.get("/events", function (req: Request, res: Response) {
   res.status(200).send(events);
 });
 

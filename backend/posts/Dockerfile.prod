@@ -1,12 +1,11 @@
 FROM node:alpine
-
 WORKDIR /usr/ecommerce
-COPY package*.json ./
-
-RUN npm install
 
 COPY . .
+COPY package*.json ./
+COPY .env.prod .env
 
+RUN npm install
 RUN npm run build
 
 CMD npm run start:prod
