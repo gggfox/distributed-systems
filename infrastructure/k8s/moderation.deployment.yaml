@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: event-bus.deployment
+  name: moderation-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: event-bus # find all pods with this label
+      app: moderation # find all pods with this label
 
   template: # configuration for the pod
     metadata:
       labels:
-        app: event-bus
+        app: moderation
 
     spec:
       containers:
-        - name: event-bus
-          image: gggfox/event-bus:latest
+        - name: moderation
+          image: gggfox/moderation:latest
           resources:
             limits:
               memory: "128Mi"
               cpu: "500m"
           ports:
-            - containerPort: 4005
+            - containerPort: 4003

@@ -18,6 +18,7 @@ router.get("/posts", function (req: Request, res: Response) {
 
 router.post("/events", function (req: Request, res: Response) {
   const { type, data } = req.body;
+  console.log("Recived Event: ", req.body.type);
   if (eventHandler.has(type)) {
     eventHandler.get(type)!(data);
   }

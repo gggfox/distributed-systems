@@ -18,7 +18,7 @@ const port: string = process.env.PORT || "3000";
 app.listen(port, async function () {
   try {
     // bring query service up to speed after down time.
-    const res: Event[] = await axios.get("http://localhost:4005/events");
+    const res: Event[] = await axios.get(process.env.EVENT_BUS_URL!);
     for (let event of res) {
       console.log("Processing event: ", event.type);
       eventHandler.get(event.type)!(event.data);

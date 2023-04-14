@@ -27,6 +27,7 @@ kubectl
 kubectl get deployments
 kubectl describe deployment [deployment_name]
 kubectl apply -f [config file name]
+kubectl apply -f .
 kubectl delete deployment [deployment_name]
 kubectl rollout restart deploymnet [deployment name] # pull latest image from docker hub
 ```
@@ -34,4 +35,28 @@ kubectl rollout restart deploymnet [deployment name] # pull latest image from do
 ```bash
 kubectl get services
 kubectl describe service [service name]
+```
+
+## Ingress NGINX
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.7.0/deploy/static/provider/cloud/deploy.yaml
+
+```
+
+## edit host file
+
+for local development you need to edit your local host files to map your ingress host to local host
+
+### UNIX
+
+path
+```bash
+/etc/hosts
+```
+add 
+```bash
+127.0.0.1 [domain name]
+example:
+127.0.0.1 posts.com
 ```
