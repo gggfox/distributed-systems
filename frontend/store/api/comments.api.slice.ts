@@ -5,12 +5,12 @@ export const commentApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllPostComments: builder.query<Comment[], string>({
       query: (postId) =>
-        `http://localhost:${process.env.NEXT_PUBLIC_COMMENTS_PORT}/posts/${postId}/comments`,
+        `${process.env.NEXT_PUBLIC_COMMENTS_URL}/posts/${postId}/comments`,
       providesTags: ["Comments"],
     }),
     createComment: builder.mutation({
       query: ({ comment, postId }: { comment: Comment; postId: string }) => ({
-        url: `http://localhost:${process.env.NEXT_PUBLIC_COMMENTS_PORT}/posts/${postId}/comments`,
+        url: `${process.env.NEXT_PUBLIC_COMMENTS_URL}/posts/${postId}/comments`,
         method: "POST",
         body: comment,
       }),

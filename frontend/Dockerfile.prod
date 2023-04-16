@@ -1,0 +1,12 @@
+FROM node:alpine
+WORKDIR /usr/ecommerce
+
+COPY . .
+COPY package*.json ./
+COPY .env.prod .env
+
+RUN npm ci
+RUN npm run build
+EXPOSE 3000
+
+CMD npm run start:prod
