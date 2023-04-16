@@ -12,7 +12,7 @@ export const postApiSlice = apiSlice.injectEndpoints({
     }),
     createPost: builder.mutation({
       query: (post: Post) => ({
-        url: `${process.env.NEXT_PUBLIC_POSTS_URL}/posts`,
+        url: `${process.env.NEXT_PUBLIC_POSTS_URL}/posts/create`,
         method: "POST",
         body: post,
       }),

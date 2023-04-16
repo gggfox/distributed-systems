@@ -10,7 +10,7 @@ export const todosApiSlice = apiSlice.injectEndpoints({
     }),
     postTodo: builder.mutation({
       query: (todo: Todo) => ({
-        url: "/todo",
+        url: "/api/todo",
         method: "POST",
         body: todo,
       }),
@@ -18,7 +18,7 @@ export const todosApiSlice = apiSlice.injectEndpoints({
     }),
     updateTodo: builder.mutation({
       query: (todo: Todo) => ({
-        url: "/todo",
+        url: "/api/todo",
         method: "PATCH",
         body: todo,
       }),
@@ -26,7 +26,7 @@ export const todosApiSlice = apiSlice.injectEndpoints({
     }),
     deleteTodo: builder.mutation({
       query: ({ id }) => ({
-        url: `/todo/${id}`,
+        url: `/api/todo/${id}`,
         method: "DELETE",
         body: id,
       }),
