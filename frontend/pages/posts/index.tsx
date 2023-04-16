@@ -9,7 +9,7 @@ export default function PostPage() {
   const form = useForm({
     initialValues: {
       title: "",
-    },
+    } as Post,
 
     validate: {
       title: hasLength(
