@@ -20,23 +20,28 @@ router.get("/posts", function (req: Request, res: Response) {
   res.status(200).send(allposts);
 });
 
-router.post("/posts", body("title").isLength({ min: 2 }), function (req, res) {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
+router.post(
+  "/posts/create",
+  body("title").isLength({ min: 2 }),
+  function (req, res) {
+    console.log("hello");
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const id = uuidv4();
+    const post: Post = {
+      id: id,
+      title: req.body.title,
+    };
+    posts.set(id, post);
+    axios.post(process.env.EVENT_BUS_URL ?? "", {
+      type: "PostCreated",
+      data: post,
+    });
+    res.status(201).send(post);
   }
-  const id = uuidv4();
-  const post: Post = {
-    id: id,
-    title: req.body.title,
-  };
-  posts.set(id, post);
-  axios.post(process.env.EVENT_BUS_URL ?? "", {
-    type: "PostCreated",
-    data: post,
-  });
-  res.status(201).send(post);
-});
+);
 
 router.patch("/posts/:id", function (req: Request, res: Response) {
   posts.set(req.params.id, req.body);

@@ -1,0 +1,71 @@
+apiVersion: skaffold/v4beta4
+kind: Config
+manifests:
+  rawYaml:
+    - ./infrastructure/k8s/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: gggfox/client
+      context: frontend
+      docker:
+        dockerfile: Dockerfile.prod
+      sync:
+        manual:
+          - src: "pages/**/*.ts"
+            dest: .
+
+    - image: gggfox/comments
+      context: backend/comments
+      docker:
+        dockerfile: Dockerfile.prod
+      sync:
+        manual:
+          - src: "src/*.ts"
+            dest: .
+
+    - image: gggfox/posts
+      context: backend/posts
+      docker:
+        dockerfile: Dockerfile.prod
+      sync:
+        manual:
+          - src: "src/*.ts"
+            dest: .
+
+    - image: gggfox/event-bus
+      context: backend/event-bus
+      docker:
+        dockerfile: Dockerfile.prod
+      sync:
+        manual:
+          - src: "src/*.ts"
+            dest: .
+
+    - image: gggfox/query
+      context: backend/query
+      docker:
+        dockerfile: Dockerfile.prod
+      sync:
+        manual:
+          - src: "src/*.ts"
+            dest: .
+
+    - image: gggfox/moderation
+      context: backend/moderation
+      docker:
+        dockerfile: Dockerfile.prod
+      sync:
+        manual:
+          - src: "src/*.ts"
+            dest: .
+
+    - image: gggfox/todos
+      context: backend/todos
+      docker:
+        dockerfile: Dockerfile.prod
+      sync:
+        manual:
+          - src: "src/*.ts"
+            dest: .
